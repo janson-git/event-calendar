@@ -1,0 +1,129 @@
+a.normal:link  { color: #000000; font-weight: normal; font-size: 10px; font-family: verdana, arial, helvetica, sans-serif; text-decoration: none }
+a.normal:visited  { color: #000000; font-weight: normal; font-size: 10px; font-family: verdana, arial, helvetica, sans-serif; text-decoration: none }
+a.normal:hover  { color: #0000ff; font-weight: normal; font-size: 10px; font-family: verdana, arial, helvetica, sans-serif; text-decoration: none }
+a.normal:active  { color: #000000; font-weight: normal; font-size: 10px; font-family: verdana, arial, helvetica, sans-serif; text-decoration: none }
+
+.normaltext { color: #000000; font-weight: normal; font-size: 10px; font-family: verdana, arial, helvetica, sans-serif }
+.eventtitle { color: #000080; font-size: 10px; font-weight: bold; font-family: verdana, arial, helvetica, sans-serif }
+.eventheading { color: #000080; font-size: 14px; font-weight: bold; font-family: verdana, arial, helvetica, sans-serif }
+.regheading { color: #000000; font-weight: normal; font-size: 13px; font-family: verdana, arial, helvetica, sans-serif }
+
+table.normaltext td {font-weight: normal; font-size: 10px; font-family: verdana, arial, helvetica, sans-serif}
+
+.button {
+	background-color: #fff;
+	border: 1px solid #000;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 0.9em;
+	margin: 2px;
+}
+
+
+
+
+table.calendar_table td {
+	padding: 1px;
+	text-align: center;
+}
+
+table.year_table {
+	border-collapse: collapse;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 3px;
+	margin-top: 3px;
+}
+
+
+td.year_text_left {
+	background-image: url("../images/calendar/year_text_left.png");
+	background-repeat: no-repeat;
+	width: 10px;
+}
+
+td.year_text_right {
+	background-image: url("../images/calendar/year_text_right.png");
+	background-repeat: no-repeat;
+	width: 10px;
+}
+
+td.today_year {
+	width: 120px;
+	height: 10px;
+	background-image: url("../images/calendar/year_text_center.png");
+	background-repeat: repeat-x;
+	text-align: center;
+}
+
+td.selected_month {
+	background-color: #fc6;
+}
+
+td.month_cell {
+	cursor: pointer;
+	font-size: 11px;
+}
+
+.cell, .cell_empty { background-color: #FFFFFF; cursor: default; }
+.cellover	{ background-color: #DFDFDF;  cursor: default;}
+.celltoday	{ 
+	*border: 1px solid #f00; 
+	outline: 1px solid #f00;
+	 cursor: default;}
+.cell_event { background-color: #fd9; cursor: default; }
+.cell_fixed { background-color: #f66; cursor: default; }
+.cellnow	{ background-color: #000; cursor: default; }
+
+div.calendar {
+	background-color: #aba9ee;
+	background-repeat: repeat-x;
+	border: 1px solid #000;
+	padding: 4px;
+	float: left;
+	margin: 5px 15px 15px 5px;
+	width: 236px;
+}
+
+
+td.eventControl {
+	background-color: #ccc;
+	padding: 10px;
+}
+
+/** on backend every cell of day is clickable. Set pointer cursor for it. */
+.backendCalendar .cell { cursor: pointer; }
+.backendCalendar .cell_event { cursor: pointer; }
+.backendCalendar .cell_fixed { cursor: pointer; }
+.backendCalendar .cell_selected { cursor: pointer; }
+
+
+
+div.prev_year {
+	width: 24px;
+	height: 24px;
+	background-image: url("../images/calendar/left_white_arrow.png");
+	cursor: pointer;
+}
+div.prev_year:hover {
+	background-image: url("../images/calendar/left_red_arrow.png");
+}
+
+div.next_year {
+	width: 24px;
+	height: 24px;
+	background-image: url("../images/calendar/right_white_arrow.png");
+	cursor: pointer;
+}
+div.next_year:hover {
+	background-image: url("../images/calendar/right_red_arrow.png");
+}
+
+div.list {
+    font-size: 0.9em;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+div.list div {
+    margin-top: 5px;
+}

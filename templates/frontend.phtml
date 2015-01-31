@@ -1,0 +1,148 @@
+<html>
+
+<head>
+    <title>frontend</title>
+    <meta http-equiv="Content-type: text/html; charset=utf-8">
+
+    <link rel="stylesheet" href="<?=SITE_URL?>/css/style.css" type="text/css">
+    <link type="text/css" rel="stylesheet" href="<?=SITE_URL?>/css/calendar.css" />
+
+    <script language="javascript" type="text/javascript" src="<?=SITE_URL?>/ext/jquery/jquery.js"></script>
+</head>
+
+<body>
+
+<div id="content">
+
+    <table>
+        <tr>
+            <td valign="top">
+
+                <div class="calendar">
+
+                    <table border="0" width="230" class="calendar_table">
+                        <tr>
+                            <!-- SELECT YEAR -->
+                            <td valign="middle" align="center">
+                                <table class="year_table">
+                                    <tr>
+                                        <td valign="middle">
+                                            <a href="<?=SITE_URL?>/index.php?date=<?=$lastYear?>-<?=$month?>-<?=$today?>" class="normal"><div class="prev_year"></div></a>
+                                        </td>
+                                        <td class="year_text_left">&nbsp;</td>
+                                        <td valign="middle" class="today_year"><b><?=$year?></b></td>
+                                        <td class="year_text_right">&nbsp;</td>
+                                        <td valign="middle">
+                                            <a href="<?=SITE_URL?>/index.php?date=<?=$nextYear?>-<?=$month?>-<?=$today?>" class="normal"><div class="next_year"></div></a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <!-- END OF SELECT YEAR -->
+                        </tr>
+                        <tr>
+                            <!-- SELECT MONTH -->
+                            <td valign="top">
+
+                                <table border="0" cellpadding="1" cellspacing="1" bgcolor="black" width="230">
+                                    <tr>
+                                        <?php for ($i = 0; $i < 12; $i++) { ?>
+                                            <?php $current_index = $i; ?>
+                                            <?php $month_num = sprintf("%02d", $i+1);?>
+
+                                            <td valign="middle" class="month_cell cell<?= ($month == $month_num) ? ' selected_month' :''?>"> <a href="<?=SITE_URL?>/index.php?date=<?=$year?>-<?=$month_num?>-01" class="normal"><?= $monthNames[$current_index] ?></a> </td>
+
+                                            <?php if ($current_index == 5) { echo "</tr>\n<tr>"; } ?>
+                                        <?php } ?>
+                                    </tr>
+                                </table>
+                                <!-- END OF SELECT MONTH -->
+                                <br>
+
+
+                                <!-- display name of month -->
+                                <table border="0" cellpadding="2" cellspacing="1" bgcolor="black" width="230" class="normaltext">
+                                    <tr>
+                                        <td class="cell" colspan="7" valign="middle">
+                                            <span class="regheading"><b><?=$currentMonth?></b></span>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+
+                                        <!-- display day names -->
+                                        <?php foreach ($dayNames as $value) { ?>
+                                            <td class="cell" valign="middle" width="10%">
+                                                <span class="normaltext"><b><?=$value?></b></span>
+                                            </td>
+                                        <?php } ?>
+                                    </tr>
+                                    <tr>
+
+                                        <!-- display days -->
+                                        <?php
+                                        $counter = 0;
+
+                                        foreach ($daysArray as $day) { ?>
+
+                                            <?php if (is_null($day)) { ?>
+                                                <!-- display blank days as nbsp's -->
+                                                <td class="cell_empty" valign="middle">
+                                                    <span class="normaltext">&nbsp;</span>
+                                                </td>
+                                            <?php } else {
+                                                $currentDay = "$year-$month-$day";
+                                                if ($counter > 6) {
+                                                    echo "\n</tr>\n<tr>\n";
+                                                    $counter = 0;
+                                                }
+                                                ?>
+
+                                                <!-- //search for event on this day and mark cell if title not empty -->
+                                                <?php if (isset($eventTitles[$currentDay])) { ?>
+                                                    <?php $event = $eventTitles[$currentDay]; ?>
+                                                    <td valign="middle" title="<?=htmlspecialchars($event['title']);?><?= !empty($event['event']) ? ' / ' . htmlspecialchars($event['event']) : '';?>" class="day_cell <?= ($event['fixed'] == 1) ? ' cell_fixed' :'';?> cell_event<?= ($currentDay == $todayDate) ? ' celltoday':'';?>">
+                                                        <?=$day?>
+                                                    </td>
+                                                <?php } else { ?>
+                                                    <!-- //show default cell style for day -->
+                                                    <td valign="middle" class="day_cell cell<?=($currentDay == $todayDate) ? ' celltoday':''?>">
+                                                        <?=$day?>
+                                                    </td>
+                                                <?php } ?>
+
+                                            <?php } ?>
+                                            <!-- /display days -->
+
+                                        <?php $counter++; ?>
+                                        <?php } ?>
+
+                                    </tr>
+                                </table>
+
+                                <!-- end outer table -->
+                            </td>
+                        </tr>
+                    </table>
+
+                    </div>
+
+                </td>
+                <td valign="top">
+                    <div class="list">
+                        <?php
+                        foreach ($eventTitles as $date => $event) { ?>
+                            <div style="border-bottom: #999 1px solid">
+                                <b><?=$date?> - <?=$event['title']?></b><br />
+                                <span><?=$event['event']?></span>
+                            </div>
+                        <?php } ?>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+</div>
+
+</body>
+</html>
